@@ -3,7 +3,7 @@ cat $1 | while read line
 do
    if [ "$line" = "---" ]; then
       echo "ffmpeg -f concat -safe 0 -i "$filename.txt" -c copy "$filename" &" 
-      ffmpeg -f concat -safe 0 -i "$filename.txt" -c copy "$filename.mp4" & > /dev/null
+      ffmpeg -f concat -safe 0 -i "$filename.txt" -c copy "$filename" & > /dev/null
       chk="0"
    elif [ "$chk" = "0" ];then
       filename=`echo $line | tr -d '"'`
