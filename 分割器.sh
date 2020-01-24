@@ -1,7 +1,7 @@
 chk=0
 cat $1 | while read line
 do
-   if [ "$line" == "---" ]; then
+   if [ "$line" = "---" ]; then
       ffmpeg -i $infile -vcodec copy -acodec copy -ss $starttime -t $endtime $outfile &
       chk=0
    elif [ $chk -eq 4 ];then
