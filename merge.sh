@@ -1,5 +1,5 @@
 chk=0
-cat $1 | while read line
+while read line
 do
    if [ "$line" = "---" ]; then
       echo "ffmpeg -f concat -safe 0 -i "$filename.txt" -c copy "$filename" &" 
@@ -10,7 +10,8 @@ do
       chk="1"
       rm $filename.txt
    else
-      echo file `echo $line | tr -d '"'` >> $filename.txt
+      echo file \'`echo $line | tr -d '"'`\' >> $filename.txt
    fi
-done
+done < $1
+wait
 
