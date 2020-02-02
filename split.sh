@@ -1,5 +1,5 @@
 chk=0
-cat $1 | while read line
+while read line
 do
    if [ "$line" = "---" ]; then
       ffmpeg -y -i $infile -vcodec copy -acodec copy -ss $starttime -to $endtime $outfile &
@@ -21,5 +21,6 @@ do
       endtime=`echo $line | tr -d '"'`
       chk=4
    fi
-done
+done < $1
+wait
 
